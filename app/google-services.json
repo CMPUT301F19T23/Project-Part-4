@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "456980476815",
+    "firebase_url": "https://listycitydb.firebaseio.com",
+    "project_id": "listycitydb",
+    "storage_bucket": "listycitydb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456980476815:android:070d35d94df8a4037491fa",
+        "android_client_info": {
+          "package_name": "com.example.simpleparadox.listycity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456980476815-v5mhfvgmgb2ng5adsvit1ne79uah31uo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJlMmuAuW7aenGZZI_Ux7fM9rdfOly_Ss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "456980476815-v5mhfvgmgb2ng5adsvit1ne79uah31uo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

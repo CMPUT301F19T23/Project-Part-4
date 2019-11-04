@@ -9,16 +9,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class ProfileActivity extends AppCompatActivity {
     TextView username;
     Button myMoodHistoryButton, friendMoodHistoryButton;
     Button logoutButton, editPictureButton;
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        auth = FirebaseAuth.getInstance();
         username = findViewById(R.id.profile_username);
         myMoodHistoryButton = findViewById(R.id.my_mood_history_button);
         friendMoodHistoryButton = findViewById(R.id.firends_mood_history_button);
@@ -29,7 +34,7 @@ public class ProfileActivity extends AppCompatActivity {
          * Get User name from input
          */
         Intent intent= getIntent();
-        String profileName = intent.getStringExtra(MainActivity.EXTRA_TEXT);
+        String profileName = auth.getCurrentUser().getDisplayName();
         username.setText(profileName);
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
