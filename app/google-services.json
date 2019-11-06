@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "456980476815",
-    "firebase_url": "https://listycitydb.firebaseio.com",
-    "project_id": "listycitydb",
-    "storage_bucket": "listycitydb.appspot.com"
+    "project_number": "165099054831",
+    "firebase_url": "https://moodtracker-6dc20.firebaseio.com",
+    "project_id": "moodtracker-6dc20",
+    "storage_bucket": "moodtracker-6dc20.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:456980476815:android:070d35d94df8a4037491fa",
+        "mobilesdk_app_id": "1:165099054831:android:933036cecc74b3e707dd1a",
         "android_client_info": {
-          "package_name": "com.example.simpleparadox.listycity"
+          "package_name": "com.example.moodtracker"
         }
       },
       "oauth_client": [
         {
-          "client_id": "456980476815-v5mhfvgmgb2ng5adsvit1ne79uah31uo.apps.googleusercontent.com",
+          "client_id": "165099054831-9cb5bqntob2f6u09617sphpgpbclvbe4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDJlMmuAuW7aenGZZI_Ux7fM9rdfOly_Ss"
+          "current_key": "AIzaSyCq1Ge64wS6Keelx4aD7x0JdiipwrLD6IM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "456980476815-v5mhfvgmgb2ng5adsvit1ne79uah31uo.apps.googleusercontent.com",
+              "client_id": "165099054831-9cb5bqntob2f6u09617sphpgpbclvbe4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
