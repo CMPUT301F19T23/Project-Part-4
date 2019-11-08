@@ -1,28 +1,50 @@
 package com.example.moodtracker;
 
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
 
-    private String username;
-    private String password;
+public class User implements Parcelable {
 
-    User(String username, String password){
+    String username;
+    String email;
+
+    User(String username, String email){
         this.username = username;
-        this.password = password;
+        this.email = email;
     }
 
     public String getUsername() {
         return this.username;
     }
 
-    public String getPassword() {
-        return this.password;
+    public String getEmail() {
+        return this.email;
     }
+
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
     }
 }

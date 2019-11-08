@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,12 +32,13 @@ public class ProfileActivity extends AppCompatActivity {
         logoutButton = findViewById(R.id.log_out_button);
         editPictureButton = findViewById(R.id.edit_profile_picture);
 
-        /**
-         * Get User name from input
-         */
-        Intent intent= getIntent();
-        String profileName = auth.getCurrentUser().getDisplayName();
-        username.setText(profileName);
+        // Get the User object from  MainActivity
+        if (getIntent().hasExtra("UserProfile")){
+            User user = getIntent().getParcelableExtra("UserProfile");
+            username.setText(user.getUsername());
+            Toast.makeText(ProfileActivity.this, "email " + user.getEmail(),
+                    Toast.LENGTH_SHORT).show();
+        }
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
