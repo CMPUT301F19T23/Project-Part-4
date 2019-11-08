@@ -22,15 +22,16 @@ public class MoodEvent {
     Calendars are abstract, instantiate with GregorianCalendar (see examples in MoodEventTest)
     */
 
-    private static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
-    private static SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
+    final public static SimpleDateFormat longFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    final public static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+    final public static SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
     private String name;
     private String reasonString;
     private int situation;
-    public static int SITUATION_ALONE = 0;
-    public static int SITUATION_ONE_PERSON = 1;
-    public static int SITUATION_SEVERAL_PEOPLE = 2;
-    public static int SITUATION_CROWD = 3;
+    final public static int SITUATION_ALONE = 0;
+    final public static int SITUATION_ONE_PERSON = 1;
+    final public static int SITUATION_SEVERAL_PEOPLE = 2;
+    final public static int SITUATION_CROWD = 3;
 
     //private type reasonImg; // cannot yet implement. More research needed
     private EmotionData emotionData;
@@ -196,5 +197,25 @@ public class MoodEvent {
    /*public Participant getOwner() {
         return owner;
     }*/
+
+   public static int situationToInt(String situation){
+       switch(situation){
+           case "Alone": return SITUATION_ALONE;
+           case "With one person": return SITUATION_ONE_PERSON;
+           case "With several people": return SITUATION_SEVERAL_PEOPLE;
+           case "With a crowd": return SITUATION_CROWD;
+           default: return -1;
+       }
+   }
+
+   public static String intToSituation(int i){
+       switch(i){
+           case SITUATION_ALONE: return "Alone";
+           case SITUATION_ONE_PERSON: return "With one person";
+           case SITUATION_SEVERAL_PEOPLE: return "With several people";
+           case SITUATION_CROWD: return "With a crowd";
+           default: return "Error";
+       }
+   }
 
 }

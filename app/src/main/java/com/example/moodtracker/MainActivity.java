@@ -33,8 +33,10 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth.AuthStateListener authStateListener;
 
 
-    public static final String EXTRA_USERPATH = "com.example.moodtracker.MESSAGE"; // Filepath to get to the Users database
+    public static final String EXTRA_USERPATH = "com.example.moodtracker.USERPATH"; // Filepath to get to the Users database
     private String userPathStr = "Users/";
+    public static final String EXTRA_USER = "com.example.moodtracker.USER";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,10 +98,10 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "signInWithEmail:success");
                         FirebaseUser user = auth.getCurrentUser();
                         //TODO:
-                        Intent intent = new Intent(MainActivity.this, CreateMoodActivity.class);
+                        Intent intent = new Intent(MainActivity.this, AddMoodActivity.class);
                         //intent.putExtra("ProfileUserName",user.getDisplayName());
                         intent.putExtra(EXTRA_USERPATH, userPathStr);
-                        intent.putExtra("CurrentUsername", user.getDisplayName());
+                        intent.putExtra(EXTRA_USER, user.getDisplayName());
                         startActivity(intent);
 
                     } else {

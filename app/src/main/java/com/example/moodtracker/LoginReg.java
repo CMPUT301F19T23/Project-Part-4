@@ -42,8 +42,7 @@ public class LoginReg extends AppCompatActivity {
 
     FirebaseAuth auth;
     FirebaseFirestore db;
-    public static final String EXTRA_USERPATH = "com.example.moodtracker.USER"; // Filepath to get to the Users database
-    private String userPathStr = "Users/";
+    private String userPathStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +65,7 @@ public class LoginReg extends AppCompatActivity {
         String newPassword  = intent.getStringExtra("Password");
         useremail.setText(newEmail);
         password.setText(newPassword);
+        userPathStr = intent.getStringExtra(MainActivity.EXTRA_USERPATH);
 
         goBackLogin.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -13,7 +13,7 @@ public class EmotionData {
     final public static EmotionData HAPPY_DATA = new EmotionData("Happy", ":)", 0xFFFF00); // color is yellow
     final public static EmotionData SAD_DATA = new EmotionData("Sad", ":(", 0x6DADAC); // color is pale blue
     final public static EmotionData NEUTRAL_DATA = new EmotionData("Neutral", ":|", 0xCFCFCF); // color is light gray
-
+    final public static String[] EmotionStrings = {"Happy", "Angry", "Sad", "Neutral"};
 
     /**
      * Get the name component of this object
