@@ -96,8 +96,10 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "signInWithEmail:success");
                         FirebaseUser user = auth.getCurrentUser();
                         //TODO:
-                        Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
+                        Intent intent = new Intent(MainActivity.this, CreateMoodActivity.class);
                         //intent.putExtra("ProfileUserName",user.getDisplayName());
+                        intent.putExtra(EXTRA_USERPATH, userPathStr);
+                        intent.putExtra("CurrentUsername", user.getDisplayName());
                         startActivity(intent);
 
                     } else {

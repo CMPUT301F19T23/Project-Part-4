@@ -1,5 +1,6 @@
 package com.example.moodtracker;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -21,7 +22,16 @@ public class MoodEvent {
     Calendars are abstract, instantiate with GregorianCalendar (see examples in MoodEventTest)
     */
 
+    private static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+    private static SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private String name;
     private String reasonString;
+    private int situation;
+    public static int SITUATION_ALONE = 0;
+    public static int SITUATION_ONE_PERSON = 1;
+    public static int SITUATION_SEVERAL_PEOPLE = 2;
+    public static int SITUATION_CROWD = 3;
+
     //private type reasonImg; // cannot yet implement. More research needed
     private EmotionData emotionData;
     //private Location location; // cannot yet implement. More research needed
@@ -31,12 +41,17 @@ public class MoodEvent {
     final private static ArrayList<EmotionData> MOOD_DATA = new ArrayList<>(Arrays.asList(
             ANGRY_DATA, HAPPY_DATA, SAD_DATA, NEUTRAL_DATA));
 
-    MoodEvent(Calendar d, String emotion){
+    MoodEvent(String n, int s, Calendar d, String emotion){
+        this.name = n;
+        this.situation = s;
         this.date = d;
         this.setEmotion(emotion);
+        this.reasonString = "";
     }
 
-    MoodEvent(Calendar d, String emotion, String rstr){
+    MoodEvent(String n, int s, Calendar d, String emotion, String rstr){
+        this.name = n;
+        this.situation = s;
         this.date = d;
         this.setEmotion(emotion);
         this.reasonString = rstr;
@@ -68,12 +83,21 @@ public class MoodEvent {
         return this.date;
     }
 
+    public String getTime(){
+        return timeFormat.format(date.getTime());
+    }
+
+    public String getDay(){
+        return dayFormat.format(date.getTime());
+    }
+
     /**
      * Set the emotionData object to one of the predefined ones based on the string inserted.
      * If it doesn't match any string, nothing happens
      * @param emotion
      *                  the string of the desired emotion
      */
+
     public void setEmotion(String emotion){
         switch(emotion.toLowerCase()){
             case "angry":
@@ -135,6 +159,22 @@ public class MoodEvent {
      */
     public void setReasonString(String reasonString) {
         this.reasonString = reasonString;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getSituation() {
+        return situation;
+    }
+
+    public void setSituation(int situation) {
+        this.situation = situation;
     }
 
     /*public Type getReasonImg() {

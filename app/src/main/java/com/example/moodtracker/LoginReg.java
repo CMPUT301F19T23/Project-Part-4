@@ -42,7 +42,7 @@ public class LoginReg extends AppCompatActivity {
 
     FirebaseAuth auth;
     FirebaseFirestore db;
-    public static final String EXTRA_USERPATH = "com.example.moodtracker.MESSAGE"; // Filepath to get to the Users database
+    public static final String EXTRA_USERPATH = "com.example.moodtracker.USER"; // Filepath to get to the Users database
     private String userPathStr = "Users/";
 
     @Override
