@@ -1,8 +1,7 @@
 package com.example.moodtracker;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 
 import static com.example.moodtracker.EmotionData.ANGRY_DATA;
@@ -14,7 +13,17 @@ import static com.example.moodtracker.EmotionData.SAD_DATA;
  * Object representing a participant's feelings at a certain time and place,
  * as well as some information about why they felt the way they did
  */
-public class MoodEvent {
+public class MoodEvent implements Serializable{
+    final public static SimpleDateFormat longFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    final public static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+    final public static SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+    final public static int SITUATION_ALONE = 0;
+    final public static int SITUATION_ONE_PERSON = 1;
+    final public static int SITUATION_SEVERAL_PEOPLE = 2;
+    final public static int SITUATION_CROWD = 3;
+
+
     private Calendar date; // date of event, formatted to include specific day and time of day fields
     /*I suspect you'll need to read up on Calendar objects especially for the UI
     https://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html
@@ -22,37 +31,33 @@ public class MoodEvent {
     Calendars are abstract, instantiate with GregorianCalendar (see examples in MoodEventTest)
     */
 
-    final public static SimpleDateFormat longFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-    final public static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
-    final public static SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
-    private String name;
     private String reasonString;
-    private int situation;
-    final public static int SITUATION_ALONE = 0;
-    final public static int SITUATION_ONE_PERSON = 1;
-    final public static int SITUATION_SEVERAL_PEOPLE = 2;
-    final public static int SITUATION_CROWD = 3;
-
     //private type reasonImg; // cannot yet implement. More research needed
     private EmotionData emotionData;
     //private Location location; // cannot yet implement. More research needed
     //private Participant owner; // waiting on Participant implementation.
 
-    
-    final private static ArrayList<EmotionData> MOOD_DATA = new ArrayList<>(Arrays.asList(
-            ANGRY_DATA, HAPPY_DATA, SAD_DATA, NEUTRAL_DATA));
+    private String name;
+    private boolean attach;
+    private int situation;
+    private String image;
+    private long id;
 
-    MoodEvent(String n, int s, Calendar d, String emotion){
-        this.name = n;
-        this.situation = s;
+    final public static EmotionData[] MOOD_DATA = {ANGRY_DATA, HAPPY_DATA, SAD_DATA, NEUTRAL_DATA};
+
+    MoodEvent(String name, long id, int situation, Calendar d, String emotion){
+        this.name = name;
+        this.id = id;
+        this.situation = situation;
         this.date = d;
         this.setEmotion(emotion);
         this.reasonString = "";
     }
 
-    MoodEvent(String n, int s, Calendar d, String emotion, String rstr){
-        this.name = n;
-        this.situation = s;
+    MoodEvent(String name, long id, int situation, Calendar d, String emotion, String rstr){
+        this.name = name;
+        this.id = id;
+        this.situation = situation;
         this.date = d;
         this.setEmotion(emotion);
         this.reasonString = rstr;
@@ -98,7 +103,6 @@ public class MoodEvent {
      * @param emotion
      *                  the string of the desired emotion
      */
-
     public void setEmotion(String emotion){
         switch(emotion.toLowerCase()){
             case "angry":
@@ -162,22 +166,6 @@ public class MoodEvent {
         this.reasonString = reasonString;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getSituation() {
-        return situation;
-    }
-
-    public void setSituation(int situation) {
-        this.situation = situation;
-    }
-
     /*public Type getReasonImg() {
         return reasonImg;
     }
@@ -198,24 +186,64 @@ public class MoodEvent {
         return owner;
     }*/
 
-   public static int situationToInt(String situation){
-       switch(situation){
-           case "Alone": return SITUATION_ALONE;
-           case "With one person": return SITUATION_ONE_PERSON;
-           case "With several people": return SITUATION_SEVERAL_PEOPLE;
-           case "With a crowd": return SITUATION_CROWD;
-           default: return -1;
-       }
-   }
+    public String getName() {
+        return name;
+    }
 
-   public static String intToSituation(int i){
-       switch(i){
-           case SITUATION_ALONE: return "Alone";
-           case SITUATION_ONE_PERSON: return "With one person";
-           case SITUATION_SEVERAL_PEOPLE: return "With several people";
-           case SITUATION_CROWD: return "With a crowd";
-           default: return "Error";
-       }
-   }
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public boolean isAttach() {
+        return attach;
+    }
+
+    public void setAttach(boolean attach) {
+        this.attach = attach;
+    }
+
+
+    public int getSituation() {
+        return situation;
+    }
+
+    public void setSituation(int situation) {
+        this.situation = situation;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public static int situationToInt(String situation){
+        switch(situation){
+            case "Alone": return SITUATION_ALONE;
+            case "With one person": return SITUATION_ONE_PERSON;
+            case "With several people": return SITUATION_SEVERAL_PEOPLE;
+            case "With a crowd": return SITUATION_CROWD;
+            default: return -1;
+        }
+    }
+
+    public static String intToSituation(int i){
+        switch(i){
+            case SITUATION_ALONE: return "Alone";
+            case SITUATION_ONE_PERSON: return "With one person";
+            case SITUATION_SEVERAL_PEOPLE: return "With several people";
+            case SITUATION_CROWD: return "With a crowd";
+            default: return "Error";
+        }
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
