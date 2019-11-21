@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MoodActivity extends AppCompatActivity {
     TextView viewProfileButton;
     TextView logoutButton;
+    TextView followingButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ public class MoodActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mood);
         viewProfileButton = findViewById(R.id.view_profile_button);
         logoutButton = findViewById(R.id.log_out_button);
+
 
         viewProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +37,14 @@ public class MoodActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MoodActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        followingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MoodActivity.this, FollowingActivity.class);
                 startActivity(intent);
             }
         });
